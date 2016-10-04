@@ -8,6 +8,7 @@ while line:
    lineParts=line.split()
    partPart=lineParts[4].split('/')
    agentName=partPart[1].split('[')
-   if agentName[0]=='smtpd':
-	print lineParts[5:]
-
+   if agentName[0]=='smtpd' and lineParts[5]=='connect':
+	ipAddr = re.findall( r'[0-9]+(?:\.[0-9]+){3}',line)
+	if len(ipAddr)>=1:
+		print ipAddr[0]
